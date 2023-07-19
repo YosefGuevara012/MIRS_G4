@@ -18,5 +18,5 @@ mesh = SubResource("QuadMesh_nh820")
 surface_material_override/0 = ExtResource("1_ht7kq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0249346, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0424198, 0)
 mesh = SubResource("SphereMesh_id7wl")
