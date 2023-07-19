@@ -1,10 +1,12 @@
 2a60927148abd1d33b818b535e306557
 ::res://::1689740644
 icon.svg::CompressedTexture2D::4013535867842994170::1688394003::1688394018::1::::<><>::
-::res://Blender_Meshes/::1689740991
-::res://Blender_Meshes/Drifters/::1689740646
-nomad_filter.blend::PackedScene::7443593664761719767::1689740395::1689740646::1::::<><>::
-::res://Blender_Meshes/USV/::1689740991
+::res://Blender_Meshes/::1689741004
+::res://Blender_Meshes/AUV/::1689741004
+::res://Blender_Meshes/Drifters/::1689743402
+nomad_filter.blend::PackedScene::7443593664761719767::1689742382::1689743402::1::::<><>::
+::res://Blender_Meshes/USV/::1689743790
+HyDrone.blend::PackedScene::5387804706972202245::1689743790::1689743792::1::::<><>::
 ::res://Resources/::1688397629
 ::res://Scenes/::1689740491
 Map.tscn::PackedScene::9087744895862004110::1688398336::0::1::::<><>::
