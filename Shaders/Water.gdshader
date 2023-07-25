@@ -43,10 +43,31 @@ float fresnel(float amount, vec3 normal, vec3 view){
 }
 
 float edge(float depth){
-
 	depth = 2.0 * depth - 1.0;
-	
 	return near * far / (far + depth * (near - far));
+}
+
+
+float waveheight(vec2 offset, int mode){
+	float h1 = 0.0; // Wave1 texture height
+	float h2 = 0.0; // Wave 2 texture height
+	float hmix = 0.0;
+	
+	switch (mode){
+		case 0: // Get the height wave 1
+			h1 = texture(wave, (world_pos.xz + offset) / noise_scale + (TIME * wave_direction) * time_scale).r;
+			return h1;
+		case 1: // Get the height wave 2
+			h2 = texture(wave, (world_pos.xz + offset) / noise_scale + (TIME * wave_direction2) * time_scale).r;
+			return h2;
+		case 2: // Get the average between both waves 
+			h1 = texture(wave, (world_pos.xz + offset) / noise_scale + (TIME * wave_direction) * time_scale).r;
+			h2 = texture(wave, (world_pos.xz + offset) / noise_scale + (TIME * wave_direction2) * time_scale).r;
+			hmix = mix(h1, h2, 0.5);
+			return hmix;
+	}
+	
+	
 }
 
 
@@ -54,6 +75,8 @@ void vertex(){
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	height = texture(wave, world_pos.xz / noise_scale + TIME * time_scale).r;
 	VERTEX.y += height * height_scale;
+
+
 	
 }
 

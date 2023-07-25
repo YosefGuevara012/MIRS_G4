@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlnlg3km0j6vo"]
+[gd_scene load_steps=3 format=3 uid="uid://dlnlg3km0j6vo"]
 
 [ext_resource type="Material" uid="uid://d1sgcvlens4x2" path="res://Shaders/Water.tres" id="1_ht7kq"]
-[ext_resource type="PackedScene" uid="uid://deby5us7d7cip" path="res://Blender_Meshes/Drifters/nomad_filter.blend" id="2_rig8h"]
-[ext_resource type="PackedScene" uid="uid://ci05md7g76hm0" path="res://Blender_Meshes/USV/HyDrone.blend" id="3_j7d30"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_nh820"]
 size = Vector2(5, 5)
@@ -10,22 +8,8 @@ subdivide_width = 1000
 subdivide_depth = 1000
 orientation = 1
 
-[sub_resource type="SphereMesh" id="SphereMesh_id7wl"]
-radius = 0.1
-height = 0.2
-
 [node name="WaterPlane" type="MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0520002, 0)
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nh820")
 surface_material_override/0 = ExtResource("1_ht7kq")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0424198, 0.823992)
-mesh = SubResource("SphereMesh_id7wl")
-
-[node name="nomad_filter" parent="." instance=ExtResource("2_rig8h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010738, -0.0463676, -0.0130065)
-
-[node name="HyDrone" parent="." instance=ExtResource("3_j7d30")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0120053, 0.0821749, -0.969073)

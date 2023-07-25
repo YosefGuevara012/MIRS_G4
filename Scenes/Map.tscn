@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://d2qf3ij1tyepq"]
+[gd_scene load_steps=3 format=3 uid="uid://d2qf3ij1tyepq"]
 
-[node name="Map" type="Node3D"]
+[ext_resource type="PackedScene" uid="uid://dlnlg3km0j6vo" path="res://Scenes/WaterPlane.tscn" id="1_o0yb8"]
+[ext_resource type="PackedScene" uid="uid://ci05md7g76hm0" path="res://Blender_Meshes/USV/HyDrone.blend" id="2_vlcao"]
+
+[node name="World" type="Node3D"]
+
+[node name="WaterPlane" parent="." instance=ExtResource("1_o0yb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.086194, 2.38419e-07, -0.00143337)
+
+[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156385, 0)
+
+[node name="HyDrone" parent="VehicleBody3D" instance=ExtResource("2_vlcao")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0923097, 0)
+
+[editable path="VehicleBody3D/HyDrone"]
