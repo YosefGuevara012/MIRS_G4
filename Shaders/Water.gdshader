@@ -8,6 +8,7 @@ uniform float roughness: hint_range(0.0, 1.0) = 0.02;
 uniform sampler2D texture_normal;
 uniform sampler2D texture_normal2;
 uniform sampler2D wave;
+uniform sampler2D wave_bump;
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture;
 // uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture;
@@ -73,8 +74,12 @@ float waveheight(vec2 offset, int mode){
 
 void vertex(){
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
+	
+	float height_mix = waveheight(vec2(0.0,0.0),2);
+	
 	height = texture(wave, world_pos.xz / noise_scale + TIME * time_scale).r;
-	VERTEX.y += height * height_scale;
+// VERTEX.y += height * height_scale;
+   VERTEX.y += height_mix * height_scale;
 
 
 	
@@ -108,6 +113,10 @@ void fragment() {
 	// Blend the normal maps into one
 	// vec3 normal_blend= mix(texture(texture_normal, UV  + time ).rbg, texture(texture_normal2, UV + time2).rbg, 0.5);
 	vec3 normal_blend= mix(texture(texture_normal, world_pos.xz  + time ).rbg, texture(texture_normal2, world_pos.xz + time2).rbg, 0.5);
+	
+	// Blend Wave1 and Wave2 maps
+	vec3 wave_normal_blend = mix(texture(wave_bump, world_pos.xz / noise_scale + time).xyz,texture(wave_bump, world_pos.xz / noise_scale + time2).xyz,0.3);
+	
 	// calculate Fresnel effect
 	float fresnel = fresnel(5.0, NORMAL, VIEW);
 	vec3 surface_color = mix(albedo, albedo2, fresnel); // interpolates albedo values in fresnel
@@ -118,5 +127,7 @@ void fragment() {
 	ALBEDO = clamp(surface_color + depth_color_adj, vec3(0.0), vec3(1.0));
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
-	NORMAL_MAP = normal_blend;
+	//NORMAL_MAP = normal_blend;
+	NORMAL_MAP = mix(wave_normal_blend, normal_blend, 0.5);
+	SPECULAR = wave_normal_blend.r;
 }
