@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://d2qf3ij1tyepq"]
 
 [ext_resource type="PackedScene" uid="uid://dlnlg3km0j6vo" path="res://Scenes/WaterPlane.tscn" id="1_o0yb8"]
-[ext_resource type="PackedScene" uid="uid://ci05md7g76hm0" path="res://Blender_Meshes/USV/HyDrone.blend" id="2_vlcao"]
 [ext_resource type="Texture2D" uid="uid://csgkmtkowgdj8" path="res://Resources/sky/AllSkyFree_Sky_EpicBlueSunset_Equirect.png" id="3_1qn3h"]
+[ext_resource type="PackedScene" uid="uid://c2c8v1k0jatfv" path="res://Scenes/nomad_filter.tscn" id="4_tt7mo"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_d3i48"]
 panorama = ExtResource("3_1qn3h")
@@ -19,15 +19,6 @@ tonemap_mode = 2
 
 [node name="World" type="Node3D"]
 
-[node name="WaterPlane" parent="." instance=ExtResource("1_o0yb8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.086194, 2.38419e-07, -0.00143337)
-
-[node name="VehicleBody3D" type="VehicleBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.156385, 0)
-
-[node name="HyDrone" parent="VehicleBody3D" instance=ExtResource("2_vlcao")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0923097, 0)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_as2h3")
 
@@ -35,4 +26,8 @@ environment = SubResource("Environment_as2h3")
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0.00926294, 10.1113, 12.4286)
 shadow_enabled = true
 
-[editable path="VehicleBody3D/HyDrone"]
+[node name="WaterPlane" parent="." instance=ExtResource("1_o0yb8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.086194, 2.38419e-07, -0.00143337)
+
+[node name="nomad_filter" parent="." instance=ExtResource("4_tt7mo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.721098, -0.0803074, -0.529933)

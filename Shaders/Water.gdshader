@@ -1,5 +1,9 @@
 shader_type spatial;
 
+uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
+// uniform sampler2D DEPTH_TEXTURE : hint_depth_texture
+uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
+
 uniform vec3 albedo: source_color;
 uniform vec3 albedo2: source_color;
 uniform float metallic: hint_range(0.0, 1.0) = 0;
@@ -9,9 +13,7 @@ uniform sampler2D texture_normal;
 uniform sampler2D texture_normal2;
 uniform sampler2D wave;
 uniform sampler2D wave_bump;
-uniform sampler2D DEPTH_TEXTURE : hint_depth_texture;
-// uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
-uniform sampler2D SCREEN_TEXTURE: hint_screen_texture;
+
 
 
 
